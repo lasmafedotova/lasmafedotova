@@ -1,545 +1,424 @@
 /* ============================================
-   CSS RESET - Noņem pārlūka default stilus
+   FONTS (files in the fonts/ folder)
    ============================================ */
 
-* {
-    /* ↑ Zvaigznīte (*) = selektors VISIEM elementiem */
-   
-    margin: 0;
-    /* ↑ Noņem visas ārējās atstarpes */
-   
-    padding: 0;
-    /* ↑ Noņem visas iekšējās atstarpes */
-   
-    box-sizing: border-box;
-    /* ↑ Padding un border IETILPST width/height */
-    /* Atvieglo izmēru aprēķinus */
+@font-face {
+    font-family: 'Bodoni Moda';
+    src: url('fonts/BodoniModa-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'LasmaFinal';
+    src: url('fonts/LasmaFinal-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
 }
 
 /* ============================================
-   PAMATA BODY STILI
+   COLORS & BASICS
+   Change the colors here — they're used everywhere.
+   Font sizes use clamp(min, preferred, max): they scale
+   with the screen and match the Figma sizes at 1920px.
    ============================================ */
+
+:root {
+    --blue: #2032ff;
+    --bg: #ffffff;
+    --text: #2032ff;
+    --card-dark: #000000;
+    --card-light: #ffffff;
+    --pad: clamp(1.25rem, 4.5vw, 5.5rem);   /* side padding */
+    --radius: 12px;
+}
+
+/* "Black" mode (toggle in the footer) */
+body.dark {
+    --bg: #000000;
+    --card-light: #000000;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
 
 body {
-    /* ↑ Stili VISAM lapas saturam */
-   
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    /* ↑ Izmanto sistēmas fontu (Mac/Windows default) */
-    /* Sans-serif = bez dekoratīvām līnijām */
-   
-    line-height: 1.6;
-    /* ↑ Atstarpe starp teksta rindām (1.6x no fonta izmēra) */
-    /* Laba lasāmība */
-   
-    color: #1a1a1a;
-    /* ↑ Teksta krāsa - gandrīz melns (ne 100% melns) */
-    /* Hex kods: # + 6 simboli (RR GG BB) */
-   
-    background: #fafafa;
-    /* ↑ Lapas fona krāsa - gaišs pelēks */
+    font-family: 'Bodoni Moda', 'Didot', 'Times New Roman', serif;
+    font-weight: 700;
+    color: var(--text);
+    background: var(--bg);
+    transition: background 0.3s;
+}
+
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+img { display: block; max-width: 100%; }
+
+.container { padding-inline: var(--pad); }
+
+.section-label {
+    font-size: clamp(1.1rem, 1.67vw, 2rem);   /* 32px in Figma */
+    font-weight: 700;
 }
 
 /* ============================================
-   HEADER - Augšējā navigācijas josla
+   HEADER
    ============================================ */
 
-header {
-    /* ↑ Mērķē <header> tagu */
-   
-    padding: 2rem 4rem;
-    /* ↑ Iekšējās atstarpes: 2rem augšā/apakšā, 4rem kreisais/labais */
-    /* rem = relative unit (1rem ≈ 16px) */
-   
-    background: white;
-    /* ↑ Balts fons */
-   
-    border-bottom: 1px solid #e5e5e5;
-    /* ↑ Plāna pelēka līnija apakšā */
-    /* 1px biezums, solid līnija, #e5e5e5 krāsa */
-}
-
-nav {
-    /* ↑ Mērķē <nav> tagu header iekšā */
-   
+.site-header {
     display: flex;
-    /* ↑ Flexbox layout - elementi rindā */
-   
     justify-content: space-between;
-    /* ↑ Izvieto elementus: viens kreisajā, otrs labajā pusē */
-   
     align-items: center;
-    /* ↑ Centrē elementus vertikāli */
-   
-    max-width: 1400px;
-    /* ↑ Maksimālais platums (lai neizplūstu uz lielajiem ekrāniem) */
-   
-    margin: 0 auto;
-    /* ↑ Centrē horizontāli: 0 augšā/apakšā, auto kreisais/labais */
+    padding-block: 2.5rem;
+    font-size: clamp(0.8rem, 1.05vw, 1.25rem);  /* 20px in Figma */
 }
 
-nav h1 {
-    /* ↑ Mērķē <h1> kas ir nav iekšā (logo/vārds) */
-   
-    font-size: 1rem;
-    /* ↑ Izmērs 1rem (≈16px) - mazs, minimālistisks */
-   
-    font-weight: 500;
-    /* ↑ Svars 500 (starp normal 400 un bold 700) */
-   
-    letter-spacing: -0.02em;
-    /* ↑ Samazina atstarpi starp burtiem (saspiež) */
-    /* Negatīvs = tuvāk kopā */
-}
+.logo { letter-spacing: 0.01em; }
 
-nav ul {
-    /* ↑ Mērķē <ul> sarakstu nav iekšā */
-   
-    list-style: none;
-    /* ↑ Noņem aizzīmes (bullet points) */
-   
+.nav {
     display: flex;
-    /* ↑ Saraksta elementi rindā (ne pa vertikāli) */
-   
-    gap: 3rem;
-    /* ↑ Atstarpe starp saraksta elementiem */
+    align-items: center;
+    gap: clamp(1.5rem, 4.5vw, 5.5rem);
 }
 
-nav a {
-    /* ↑ Mērķē VISAS saites (<a>) nav iekšā */
-   
-    color: #666;
-    /* ↑ Vidēji pelēka krāsa */
-   
-    text-decoration: none;
-    /* ↑ Noņem pasvītrojumu */
-   
-    font-size: 0.95rem;
-    /* ↑ Mazliet mazāks par normālo (15.2px) */
-   
-    transition: color 0.2s;
-    /* ↑ Smooth krāsas maiņa 0.2 sekundes */
-    /* Animē hover efektu */
-}
+.nav a { transition: opacity 0.2s; }
+.nav a:hover { opacity: 0.6; }
 
-nav a:hover {
-    /* ↑ Kad pele ir virs saites */
-   
-    color: #1a1a1a;
-    /* ↑ Kļūst tumšāka (gandrīz melna) */
-}
+.social { display: flex; gap: 0.9rem; }
+.social svg { display: block; width: clamp(16px, 1.15vw, 22px); height: auto; }
 
 /* ============================================
-   MAIN - Galvenais saturs
+   HERO
    ============================================ */
 
-main {
-    /* ↑ Mērķē <main> tagu */
-   
-    max-width: 1400px;
-    /* ↑ Ierobežo platumu */
-   
-    margin: 0 auto;
-    /* ↑ Centrē horizontāli */
-   
-    padding: 0 4rem;
-    /* ↑ Padding: 0 augšā/apakšā, 4rem kreisais/labais */
-}
-
-/* ============================================
-   HERO SEKCIJA - Liela intro daļa
-   ============================================ */
-
+/* Frame size: full width, 16:9, but never taller than the screen */
 .hero {
-    /* ↑ Punkts (.) nozīmē CLASS selector */
-    /* Mērķē elementus ar class="hero" */
-   
-    padding: 8rem 0 6rem;
-    /* ↑ Padding: 8rem augšā, 0 kreisais/labais, 6rem apakšā */
-    /* Daudz vietas augšā un apakšā */
+    --frame-h: min(56.25vw, 100svh);
+    --scroll-length: 180svh;          /* bigger = slower animation */
+    height: calc(var(--frame-h) + var(--scroll-length));
+    background: #ffffff;
 }
 
-.hero h2 {
-    /* ↑ Mērķē <h2> kas ir .hero iekšā */
-   
-    font-size: 4rem;
-    /* ↑ Ļoti liels (64px) - galvenais virsraksts */
-   
-    font-weight: 300;
-    /* ↑ Plāns fonts (light) */
-    /* 300 ir viegls, 400 normāls, 700 treknraksts */
-   
-    letter-spacing: -0.03em;
-    /* ↑ Vēl vairāk saspiesti burti */
-   
-    margin-bottom: 1.5rem;
-    /* ↑ Atstarpe zem virsraksta */
-   
-    line-height: 1.1;
-    /* ↑ Mazāka atstarpe starp rindām (kompaktāks) */
+/* Stays in the middle of the screen while you scroll through .hero */
+.hero-sticky {
+    position: sticky;
+    top: clamp(0px, calc((100svh - var(--frame-h)) / 2), 4.5rem);
+    height: var(--frame-h);
+    display: flex;
+    justify-content: center;
 }
 
-.hero p {
-    /* ↑ Mērķē <p> kas ir .hero iekšā */
-   
-    font-size: 1.25rem;
-    /* ↑ Lielāks par normālo (20px) */
-   
-    color: #666;
-    /* ↑ Vidēji pelēks (vieglāks par virsrakstu) */
-   
-    font-weight: 300;
-    /* ↑ Plāns fonts */
-   
-    max-width: 600px;
-    /* ↑ Ierobežo teksta platumu (lasāmībai) */
-    /* Pārāk plats teksts ir grūti lasāms */
+.hero-frames {
+    position: relative;
+    height: 100%;
+    aspect-ratio: 16 / 9;
+    max-width: 100%;
+}
+
+.hero-frames img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    visibility: hidden;
+}
+
+.hero-frames img.is-active { visibility: visible; }
+
+/* Visitors who turned off animations see only the first frame */
+@media (prefers-reduced-motion: reduce) {
+    .hero { height: auto; }
+    .hero-sticky { position: static; }
+}
+
+/* Black mode: the hero stays white for now. If you make a dark version
+   of the illustration (e.g. images/hero-dark.png), you can swap it in here. */
+
+/* ============================================
+   ABOUT (blue band)
+   ============================================ */
+
+.about {
+    background: var(--blue);
+    color: #ffffff;
+    padding-block: clamp(2.5rem, 5vw, 6rem) clamp(4rem, 8vw, 10rem);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 32% 1fr;
+    align-items: center;
+    margin-top: clamp(2rem, 4.5vw, 5.5rem);
+}
+
+.about-hey {
+    font-size: clamp(3.5rem, 6.67vw, 8rem);   /* 128px in Figma */
+    line-height: 1;
+}
+
+.about-text {
+    /* LasmaFinal has no "/" — the browser takes it from Bodoni Moda */
+    font-family: 'LasmaFinal', 'Bodoni Moda', serif;
+    font-weight: 400;
+    font-size: clamp(1.6rem, 3.33vw, 4rem);   /* 64px in Figma */
+    line-height: 1.35;
+    max-width: 26em;
 }
 
 /* ============================================
-   PORTFOLIO SEKCIJA - Darbu galerija
+   WORKS
    ============================================ */
 
-.portfolio {
-    /* ↑ Mērķē elementus ar class="portfolio" */
-   
-    padding: 4rem 0 8rem;
-    /* ↑ Padding: 4rem augšā, 0 kreisais/labais, 8rem apakšā */
+.works {
+    padding-block: clamp(2.5rem, 5vw, 6rem) clamp(4rem, 7vw, 8rem);
 }
 
-.portfolio h2 {
-    /* ↑ Virsraksts portfolio sekcijā */
-   
-    font-size: 0.875rem;
-    /* ↑ Mazs (14px) */
-   
-    text-transform: uppercase;
-    /* ↑ Visi burti LIELIE */
-   
-    letter-spacing: 0.1em;
-    /* ↑ Daudz vietas starp burtiem (plašāk) */
-    /* Pozitīvs = tālāk */
-   
-    color: #999;
-    /* ↑ Gaišs pelēks */
-   
-    margin-bottom: 4rem;
-    /* ↑ Liela atstarpe zem virsraksta */
-   
-    font-weight: 500;
-    /* ↑ Vidēji smags */
+.tabs {
+    display: flex;
+    gap: clamp(1.5rem, 4.5vw, 5.5rem);
+    margin-top: 1.25rem;
 }
 
-/* ============================================
-   GALERIJA - Projektu grid
-   ============================================ */
+.tab {
+    font-size: clamp(0.85rem, 1.25vw, 1.5rem);   /* 24px in Figma */
+    padding-bottom: 0.2em;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s, opacity 0.2s;
+}
+
+.tab:hover { opacity: 0.7; }
+.tab.is-active { border-color: currentColor; }
 
 .gallery {
-    /* ↑ Container projektu kartītēm */
-   
     display: grid;
-    /* ↑ CSS Grid layout (nevis flexbox) */
-    /* Grid = 2D layout (rindas UN kolonnas) */
-   
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    /* ↑ MAĢIJA! Automātisks kolonnu skaits */
-    /* repeat = atkārto */
-    /* auto-fit = pielāgojas ekrāna platumam */
-    /* minmax(400px, 1fr) = minimums 400px, maksimums 1 daļa */
-    /* Rezultāts: 3 kolonnas plašam, 2 vidējam, 1 mobilajam */
-   
-    gap: 3rem;
-    /* ↑ Atstarpe starp grid elementiem */
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(1rem, 1.7vw, 2rem);
+    margin-top: clamp(2rem, 3.5vw, 4rem);
 }
 
-/* ============================================
-   PROJEKTA KARTĪTE - Atsevišķs darbs
-   ============================================ */
+.gallery[hidden] { display: none; }
 
-.project-card {
-    /* ↑ Vispārīgi stili VISĀM kartītēm */
-   
-    background: white;
-    /* ↑ Balts fons */
-   
+/* ---------- Project card ---------- */
+
+.card { cursor: pointer; }
+
+.card-media {
+    position: relative;
+    aspect-ratio: 553 / 771;          /* card size in Figma */
+    border-radius: var(--radius);
+    overflow: hidden;
     transition: transform 0.3s ease;
-    /* ↑ Animē transform izmaiņas 0.3 sekundes */
-    /* ease = sākas lēni, paātrinās, beidzas lēni */
-   
-    cursor: pointer;
-    /* ↑ Kursors kļūst par rociņu (norāda, ka klikšķināms) */
 }
 
-.project-card:hover {
-    /* ↑ Kad pele ir virs kartītes */
-   
-    transform: translateY(-4px);
-    /* ↑ Paceļ kartīti 4px uz augšu */
-    /* Negatīvs Y = uz augšu, pozitīvs = uz leju */
+.card:hover .card-media { transform: translateY(-4px); }
+
+.card--dark  .card-media { background: var(--card-dark); }
+.card--light .card-media { background: var(--card-light); }
+
+/* Black mode: turn black line drawings on white into white lines on black */
+body.dark .card--light .slides img { filter: invert(1); }
+
+.slides { position: absolute; inset: 0; }
+
+.slides img {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 0.4s ease;
 }
 
-.project-card .img-placeholder {
-    /* ↑ Attēla vietas holders */
-    /* Atstarpe starp .project-card un .img-placeholder = descendant selector */
-    /* Mērķē .img-placeholder KAS IR .project-card iekšā */
-   
-    width: 100%;
-    /* ↑ Pilns platums no vecāka elementa */
-   
-    aspect-ratio: 4/3;
-    /* ↑ Fiksēts platuma/augstuma attiecība */
-    /* 4:3 = standarta foto proporcija */
-    /* Automātiski aprēķina augstumu no platuma */
-   
+.slides img.is-active { opacity: 1; }
+
+/* Arrow buttons (also used for "Back" in the pop-up) */
+.round-btn {
+    width: clamp(28px, 2.1vw, 40px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.round-btn:hover { transform: scale(1.08); }
+
+.slide-btn {
+    position: absolute;
+    top: 50%;
+    translate: 0 -50%;
+}
+
+.slide-btn.prev { left: 6%; }
+.slide-btn.next { right: 6%; }
+
+.card--dark  .round-btn { background: #2b2b2b; color: #fff; }
+.card--light .round-btn { background: #f2f2f2; color: #111; }
+
+/* Dots under the slides */
+.dots {
+    position: absolute;
+    left: 50%;
+    bottom: 4%;
+    translate: -50% 0;
     display: flex;
-    /* ↑ Flexbox, lai centrētu saturu */
-   
-    align-items: center;
-    /* ↑ Centrē vertikāli */
-   
-    justify-content: center;
-    /* ↑ Centrē horizontāli */
-   
-    font-size: 3rem;
-    /* ↑ Liels fonts (ja liek emoji vai tekstu) */
-   
-    background: #f5f5f5;
-    /* ↑ Gaišs pelēks fons (default) */
-   
-    margin-bottom: 1.5rem;
-    /* ↑ Atstarpe zem attēla */
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 999px;
 }
 
-/* Dažādas fona krāsas katrai kartītei */
+.card--dark  .dots { background: #2b2b2b; }
+.card--light .dots { background: #f2f2f2; }
 
-.card1 .img-placeholder {
-    /* ↑ Tikai pirmā kartīte (class="card1") */
-   
-    background: #f0f0f0;
-    /* ↑ Mazliet tumšāks pelēks */
+.dots span {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.35;
 }
 
-.card2 .img-placeholder {
-    /* ↑ Tikai otrā kartīte */
-   
-    background: #e8e8e8;
-    /* ↑ Vēl tumšāks */
-}
+.card--dark  .dots span { color: #fff; }
+.card--light .dots span { color: #111; }
+.dots span.is-active { opacity: 1; }
 
-.card3 .img-placeholder {
-    /* ↑ Tikai trešā kartīte */
-   
-    background: #f5f5f5;
-    /* ↑ Gaišs (tāds pats kā default) */
-}
-
-.project-card h3 {
-    /* ↑ Projekta nosaukums kartītē */
-   
-    font-size: 1.25rem;
-    /* ↑ Vidēji liels (20px) */
-   
-    font-weight: 400;
-    /* ↑ Normāls svars (ne treknraksts) */
-   
-    color: #1a1a1a;
-    /* ↑ Gandrīz melns */
-   
-    margin-bottom: 0.5rem;
-    /* ↑ Neliela atstarpe zem nosaukuma */
-}
-
-.project-card p {
-    /* ↑ Projekta apraksts kartītē */
-   
-    color: #666;
-    /* ↑ Vidēji pelēks (vieglāks par nosaukumu) */
-   
-    font-size: 0.95rem;
-    /* ↑ Mazliet mazāks (15.2px) */
-   
-    font-weight: 300;
-    /* ↑ Plāns fonts */
-}
-
-/* ============================================
-   FOOTER - Apakšējā daļa
-   ============================================ */
-
-footer {
-    /* ↑ Mērķē <footer> tagu */
-   
-    background: white;
-    /* ↑ Balts fons */
-   
-    border-top: 1px solid #e5e5e5;
-    /* ↑ Plāna pelēka līnija AUGŠĀ */
-   
-    padding: 3rem 4rem;
-    /* ↑ Padding: 3rem augšā/apakšā, 4rem kreisais/labais */
-   
-    margin-top: 4rem;
-    /* ↑ Liela atstarpe virs footer */
-}
-
-.footer-content {
-    /* ↑ Container footer saturam */
-   
-    max-width: 1400px;
-    /* ↑ Ierobežo platumu */
-   
-    margin: 0 auto;
-    /* ↑ Centrē horizontāli */
-   
+.card-caption {
     display: flex;
-    /* ↑ Flexbox layout */
-   
     justify-content: space-between;
-    /* ↑ Copyright kreisajā, saites labajā pusē */
-   
-    align-items: center;
-    /* ↑ Centrē vertikāli */
+    gap: 1rem;
+    margin-top: 0.9rem;
+    font-size: clamp(0.75rem, 1.05vw, 1.25rem);   /* 20px in Figma */
 }
 
-footer p {
-    /* ↑ Copyright teksts */
-   
-    color: #999;
-    /* ↑ Gaišs pelēks */
-   
-    font-size: 0.875rem;
-    /* ↑ Mazs (14px) */
-}
+/* ============================================
+   FOOTER (blue)
+   ============================================ */
 
-.social-links {
-    /* ↑ Container sociālajām saitēm */
-   
+.site-footer {
+    background: var(--blue);
+    color: #ffffff;
     display: flex;
-    /* ↑ Saites rindā */
-   
-    gap: 2rem;
-    /* ↑ Atstarpe starp saitēm */
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(3rem, 6vw, 7rem);
+    padding-block: clamp(2.5rem, 4vw, 5rem) clamp(4rem, 7vw, 8rem);
 }
 
-.social-links a {
-    /* ↑ Atsevišķa sociālā saite */
-   
-    color: #666;
-    /* ↑ Vidēji pelēks */
-   
-    text-decoration: none;
-    /* ↑ Bez pasvītrojuma */
-   
-    font-size: 0.875rem;
-    /* ↑ Mazs (14px) */
-   
-    transition: color 0.2s;
-    /* ↑ Smooth krāsas maiņa */
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+    font-size: clamp(1rem, 1.67vw, 2rem);
+    cursor: pointer;
 }
 
-.social-links a:hover {
-    /* ↑ Kad pele virs saites */
-   
-    color: #1a1a1a;
-    /* ↑ Kļūst tumšāka */
+.theme-toggle input { position: absolute; opacity: 0; pointer-events: none; }
+
+.switch {
+    position: relative;
+    width: 2.9em;
+    height: 1.2em;
+    border: 2px solid #ffffff;
+    border-radius: 999px;
+    transition: background 0.25s;
+}
+
+.switch::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0.25em;
+    translate: 0 -50%;
+    width: 0.75em;
+    height: 0.75em;
+    border-radius: 50%;
+    background: #9a9a9a;
+    transition: left 0.25s, background 0.25s;
+}
+
+.theme-toggle input:checked + .switch { background: #000; }
+.theme-toggle input:checked + .switch::after { left: 1.85em; background: #ffffff; }
+.theme-toggle input:focus-visible + .switch { outline: 2px solid #fff; outline-offset: 3px; }
+
+.copyright { font-size: clamp(1rem, 1.67vw, 2rem); }
+
+/* ============================================
+   PROJECT POP-UP
+   ============================================ */
+
+.project-modal {
+    border: 0;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+    background: var(--bg);
+    color: var(--text);
+}
+
+.project-modal::backdrop { background: rgba(0, 0, 0, 0.5); }
+
+.modal-inner { padding-block: clamp(1.5rem, 3vw, 3.5rem); }
+
+.modal-top {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.modal-close { background: #f2f2f2; color: #111; }
+body.dark .modal-close { background: #2b2b2b; color: #fff; }
+
+.modal-title { font-size: clamp(1.1rem, 1.67vw, 2rem); }
+
+.modal-media {
+    margin: clamp(1.5rem, 3vw, 3rem) auto;
+    width: min(100%, 1100px);
+    aspect-ratio: 1;
+    max-height: 70vh;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: #000 center / 60% no-repeat;   /* image shown while the 3D model loads */
+}
+
+.modal-media model-viewer,
+.modal-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    --poster-color: transparent;
+}
+
+.modal-description {
+    max-width: 1100px;
+    margin-inline: auto;
+    font-size: clamp(0.95rem, 1.25vw, 1.5rem);
+    line-height: 1.45;
+    white-space: pre-line;
 }
 
 /* ============================================
-   RESPONSIVE - Mobilajiem telefoniem
+   RESPONSIVE
    ============================================ */
 
-@media (max-width: 768px) {
-    /* ↑ Media query = CSS kas darbojas TIK JA... */
-    /* max-width: 768px = ekrāns 768px vai mazāks */
-    /* Tipiskais tablet/phone breakpoint */
-   
-    header, main, footer {
-        /* ↑ Visiem trim elementiem */
-       
-        padding-left: 2rem;
-        padding-right: 2rem;
-        /* ↑ Mazāks padding sānos (4rem → 2rem) */
-        /* Vairāk vietas šaurā ekrānā */
-    }
-
-    nav {
-        /* ↑ Navigācija mobilajā */
-       
-        flex-direction: column;
-        /* ↑ Elementi pa vertikāli (ne horizontāli) */
-        /* Logo virs menu */
-       
-        gap: 1.5rem;
-        /* ↑ Atstarpe starp logo un menu */
-       
-        align-items: flex-start;
-        /* ↑ Izlīdzina pa kreisi (nevis centru) */
-    }
-
-    nav ul {
-        /* ↑ Menu saraksts mobilajā */
-       
-        gap: 2rem;
-        /* ↑ Mazāka atstarpe (3rem → 2rem) */
-    }
-
-    .hero {
-        /* ↑ Hero sekcija mobilajā */
-       
-        padding: 4rem 0 3rem;
-        /* ↑ Mazāks padding (8rem → 4rem, 6rem → 3rem) */
-    }
-
-    .hero h2 {
-        /* ↑ Hero virsraksts mobilajā */
-       
-        font-size: 2.5rem;
-        /* ↑ Mazāks (4rem → 2.5rem = 64px → 40px) */
-    }
-
-    .hero p {
-        /* ↑ Hero teksts mobilajā */
-       
-        font-size: 1.1rem;
-        /* ↑ Mazāks (1.25rem → 1.1rem) */
-    }
-
-    .gallery {
-        /* ↑ Projektu grid mobilajā */
-       
-        grid-template-columns: 1fr;
-        /* ↑ TIK 1 kolonna (nevis 2-3) */
-        /* Visi projekti pa vertikāli */
-    }
-
-    .footer-content {
-        /* ↑ Footer saturs mobilajā */
-       
-        flex-direction: column;
-        /* ↑ Elementi pa vertikāli */
-        /* Copyright virs saitēm */
-       
-        gap: 1.5rem;
-        /* ↑ Atstarpe starp elementiem */
-       
-        align-items: flex-start;
-        /* ↑ Izlīdzina pa kreisi */
-    }
+@media (max-width: 1000px) {
+    .gallery { grid-template-columns: repeat(2, 1fr); }
 }
 
-/* ============================================
-   KOPSAVILKUMS - KO MAINĪT:
-   ============================================
-   
-   KRĀSAS:
-   - Rinda 32: Teksta krāsa (#1a1a1a)
-   - Rinda 35: Fona krāsa (#fafafa)
-   - Rinda 54: Header fons (white)
-   
-   IZMĒRI:
-   - Rinda 139: Hero virsraksts (4rem)
-   - Rinda 227: Galvenā platums (1400px)
-   
-   FONTI:
-   - Rinda 26: Font family
-   
-   ============================================ */
+@media (max-width: 700px) {
+    .site-header { padding-block: 1.5rem; }
+    .nav { gap: 1.25rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .br-desktop { display: none; }   /* let the text wrap naturally on phones */
+    .gallery { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; scroll-behavior: auto !important; }
+}

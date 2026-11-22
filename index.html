@@ -1,234 +1,203 @@
 <!DOCTYPE html>
-<!-- ↑ Šis saka pārlūkam: "Šis ir HTML5 dokuments" -->
-
-<html lang="lv">
-<!-- ↑ <html> - Visa lapas sākums. lang="lv" nozīmē latviešu valoda -->
-
+<html lang="en">
 <head>
-<!-- ↑ <head> satur informāciju PAR lapu (lietotājs neredz) -->
-
     <meta charset="UTF-8">
-    <!-- ↑ Atbalsta latviešu burtus (ā, č, ē, ģ...) -->
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- ↑ Lai lapa labi izskatās uz mobilajiem telefoniem -->
+    <title>Lāsma Fedotova — Graphic designer / artist</title>
+    <meta name="description" content="Portfolio of Lāsma Fedotova, graphic designer and artist based in Latvia.">
 
-    <title>Portfolio</title>
-    <!-- ↑ Teksts, ko redz pārlūka tab augšā -->
+    <!-- Fonts live in the fonts/ folder; preloading makes them appear faster -->
+    <link rel="preload" href="fonts/BodoniModa-Bold.woff" as="font" type="font/woff" crossorigin>
+    <link rel="preload" href="fonts/LasmaFinal-Regular.woff" as="font" type="font/woff" crossorigin>
 
     <link rel="stylesheet" href="style.css">
-    <!-- ↑ SVARĪGI! Pievieno CSS failu ar stiliem -->
-    <!-- href="style.css" nozīmē: meklē style.css TAJĀ PAŠĀ mapē -->
 
+    <!-- 3D viewer (used in the project pop-up) -->
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@4.3.0/dist/model-viewer.min.js"></script>
+    <script src="script.js" defer></script>
 </head>
-<!-- ↑ Head beidzas -->
-
 <body>
-<!-- ↑ <body> satur visu, ko lietotājs REDZ lapā -->
-   
-    <!-- ========================================
-         HEADER - Augšējā navigācijas josla
-         ======================================== -->
-    <header>
-    <!-- ↑ Semantiskais tags lapas galvenei -->
-    <!-- Šeit būs logo un menu -->
 
-        <nav>
-        <!-- ↑ <nav> - navigācijas elements -->
+    <!-- ============ HEADER ============ -->
+    <header class="site-header container">
+        <!-- Later: replace the text with the animated logo, e.g.
+             <img src="images/logo.svg" alt="Lāsma Fedotova" class="logo-img"> -->
+        <a href="#top" class="logo">LĀSMA FEDOTOVA</a>
 
-            <h1>Vārds Uzvārds</h1>
-            <!-- ↑ <h1> - Galvenais virsraksts (lielākais) -->
-            <!-- Šeit students raksta savu vārdu -->
-
-            <ul>
-            <!-- ↑ <ul> - Unordered List (saraksts ar punktiem) -->
-
-                <li><a href="index.html">Sākums</a></li>
-                <!-- ↑ <li> - List Item (saraksta elements) -->
-                <!-- <a href="..."> - saite uz citu lapu -->
-                <!-- href="index.html" - ved uz šo pašu lapu -->
-
-                <li><a href="about.html">Par mani</a></li>
-                <!-- ↑ Saite uz "Par mani" lapu (vēl nav izveidota) -->
-
-                <li><a href="contact.html">Kontakti</a></li>
-                <!-- ↑ Saite uz "Kontakti" lapu (vēl nav izveidota) -->
-
-            </ul>
-            <!-- ↑ Saraksta beigas -->
-
+        <nav class="nav">
+            <a href="#about">ABOUT</a>
+            <a href="#works">WORKS</a>
+            <div class="social">
+                <!-- Replace # with your real profile links -->
+                <a href="#" aria-label="Instagram" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 20 20" width="22" height="22" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M13.23,3.49c-.84-.04-1.1-.05-3.23-.05s-2.39,0-3.24.06c-.78.03-1.2.16-1.49.27-.34.13-.66.33-.91.59-.27.26-.47.57-.6.92-.11.28-.24.7-.27,1.49-.05.84-.05,1.09-.05,3.23s0,2.39.05,3.23c0,.51.1,1.02.27,1.49.14.36.32.64.6.91.28.28.54.46.92.6.47.18.97.27,1.48.27.85.05,1.1.05,3.24.05s2.39-.01,3.23-.05c.78-.04,1.2-.16,1.49-.27.37-.15.65-.33.92-.6s.45-.55.6-.92c.18-.48.27-.98.27-1.49.04-.84.05-1.1.05-3.23s-.01-2.39-.06-3.23c-.03-.78-.16-1.2-.27-1.49-.13-.35-.33-.66-.59-.91-.26-.26-.57-.47-.92-.6-.28-.11-.7-.24-1.49-.27h0ZM6.7,2.05c.86-.04,1.13-.05,3.3-.05,1.1-.01,2.2,0,3.3.05.66.01,1.32.14,1.94.37.53.2,1.01.52,1.41.92.41.4.73.88.93,1.41.23.62.35,1.28.36,1.94.05.86.05,1.12.05,3.3s-.01,2.44-.05,3.29c-.04.86-.17,1.44-.37,1.94-.2.53-.47.98-.92,1.42-.4.41-.88.72-1.41.92-.51.19-1.1.34-1.94.37-.86.04-1.12.05-3.3.05s-2.44,0-3.3-.06c-.85-.03-1.43-.16-1.94-.36-.53-.21-1.01-.52-1.41-.92-.41-.4-.72-.89-.93-1.42-.18-.51-.33-1.09-.37-1.94-.04-.85-.05-1.13-.05-3.29s0-2.43.06-3.3c.03-.85.16-1.43.37-1.94.21-.53.53-1.01.92-1.41.4-.4.88-.72,1.41-.93.51-.18,1.09-.33,1.94-.37h0ZM7.12,6.86c1.59-1.62,4.18-1.65,5.8-.06,1.62,1.59,1.65,4.18.06,5.8-.02.02-.04.04-.06.06-1.62,1.59-4.22,1.56-5.8-.06-1.56-1.6-1.56-4.15,0-5.74ZM9.01,12.23c1.36.56,2.92-.08,3.49-1.44.56-1.36-.08-2.92-1.44-3.49s-2.92.08-3.49,1.44c-.56,1.36.08,2.92,1.44,3.49ZM14.93,6.28c-.37.37-.98.37-1.36,0-.37-.37-.37-.98,0-1.36h0c.37-.37.98-.37,1.35,0,.37.37.37.98,0,1.35Z"/>
+                    </svg>
+                </a>
+                <a href="#" aria-label="LinkedIn" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 20 20" width="22" height="22" fill="currentColor" aria-hidden="true">
+                        <path d="M15.08,10.7v3.52s-2.13,0-2.13,0v-3.39c0-.22-.05-.42-.12-.62-.04-.12-.12-.23-.22-.31-.18-.16-.41-.2-.65-.2s-.44.03-.64.15c-.35.2-.45.61-.48.99l-.02.2v3.18s-2.13,0-2.13,0v-6.38s2.13,0,2.13,0v.95c.1-.13.16-.25.26-.36l.1-.11c.13-.14.28-.22.45-.3.25-.11.52-.16.79-.18h.43c1.6.09,2.11,1.1,2.21,2.58l.02.28Z"/><rect x="5.51" y="7.84" width="2.13" height="6.38"/><path d="M5.87,6.51c-.48-.43-.48-1.18.02-1.6.43-.37,1.08-.33,1.46.08s.38,1.06-.01,1.47-1.04.43-1.47.05Z"/><path d="M13.23,3.49c-.84-.04-1.1-.05-3.23-.05s-2.39,0-3.24.06c-.78.03-1.2.16-1.49.27-.34.13-.66.33-.91.59-.27.26-.47.57-.6.92-.11.28-.24.7-.27,1.49-.05.84-.05,1.09-.05,3.23s0,2.39.05,3.23c0,.51.1,1.02.27,1.49.14.36.32.64.6.91.28.28.54.46.92.6.47.18.97.27,1.48.27.85.05,1.1.05,3.24.05s2.39-.01,3.23-.05c.78-.04,1.2-.16,1.49-.27.37-.15.65-.33.92-.6s.45-.55.6-.92c.18-.48.27-.98.27-1.49.04-.84.05-1.1.05-3.23s-.01-2.39-.06-3.23c-.03-.78-.16-1.2-.27-1.49-.13-.35-.33-.66-.59-.91-.26-.26-.57-.47-.92-.6-.28-.11-.7-.24-1.49-.27h0ZM6.7,2.05c.86-.04,1.13-.05,3.3-.05,1.1-.01,2.2,0,3.3.05.66.01,1.32.14,1.94.37.53.2,1.01.52,1.41.92.41.4.73.88.93,1.41.23.62.35,1.28.36,1.94.05.86.05,1.12.05,3.3s-.01,2.44-.05,3.29c-.04.86-.17,1.44-.37,1.94-.2.53-.47.98-.92,1.42-.4.41-.88.72-1.41.92-.51.19-1.1.34-1.94.37-.86.04-1.12.05-3.3.05s-2.44,0-3.3-.06c-.85-.03-1.43-.16-1.94-.36-.53-.21-1.01-.52-1.41-.92-.41-.4-.72-.89-.93-1.42-.18-.51-.33-1.09-.37-1.94-.04-.85-.05-1.13-.05-3.29s0-2.43.06-3.3c.03-.85.16-1.43.37-1.94.21-.53.53-1.01.92-1.41.4-.4.88-.72,1.41-.93.51-.18,1.09-.33,1.94-.37h0Z" fill-rule="evenodd"/>
+                    </svg>
+                </a>
+            </div>
         </nav>
-        <!-- ↑ Navigācijas beigas -->
-
     </header>
-    <!-- ↑ Header beidzas -->
 
-    <!-- ========================================
-         MAIN - Galvenais saturs
-         ======================================== -->
     <main>
-    <!-- ↑ <main> - galvenais lapas saturs -->
 
-        <!-- HERO SEKCIJA - Liela intro daļa -->
-        <section class="hero">
-        <!-- ↑ <section> - semantisks satura bloks -->
-        <!-- class="hero" - CSS var mērķēt šo konkrēto sekciju -->
-
-            <h2>Māksliniece<br>un programmētāja</h2>
-            <!-- ↑ <h2> - Otrā līmeņa virsraksts (mazāks par h1) -->
-            <!-- <br> - line break, jauna rinda -->
-
-            <p>Radu interaktīvas pieredzes, kurās māksla satiekas ar tehnoloģijām.</p>
-            <!-- ↑ <p> - Paragraph (rindkopa/paragrāfs) -->
-
+        <!-- ============ HERO ============ -->
+        <!--
+            Scroll animation: the hero stays in place while you scroll,
+            and the 12 frames change one after another (script.js, part 0).
+            Phones get the smaller "-sm" files automatically.
+            To change the speed, change the height of .hero in style.css.
+        -->
+        <section class="hero" id="hero">
+            <div class="hero-sticky">
+                <div class="hero-frames">
+                    <img src="images/header-01.webp" srcset="images/header-01-sm.webp 960w, images/header-01.webp 1920w" sizes="100vw" width="1920" height="1080" alt="Lāsma sitting in front of large letters — a series of portraits in different styles" class="is-active">
+                    <img src="images/header-02.webp" srcset="images/header-02-sm.webp 960w, images/header-02.webp 1920w" sizes="100vw" width="1920" height="1080" alt="">
+                    <img src="images/header-03.webp" srcset="images/header-03-sm.webp 960w, images/header-03.webp 1920w" sizes="100vw" width="1920" height="1080" alt="">
+                    <img src="images/header-04.webp" srcset="images/header-04-sm.webp 960w, images/header-04.webp 1920w" sizes="100vw" width="1920" height="1080" alt="">
+                    <img src="images/header-05.webp" srcset="images/header-05-sm.webp 960w, images/header-05.webp 1920w" sizes="100vw" width="1920" height="1080" alt="">
+                    <img src="images/header-06.webp" srcset="images/header-06-sm.webp 960w, images/header-06.webp 1920w" sizes="100vw" width="1920" height="1080" alt="">
+                    <img src="images/header-07.webp" srcset="images/header-07-sm.webp 960w, images/header-07.webp 1920w" sizes="100vw" width="1920" height="1080" alt="">
+                    <img src="images/header-08.webp" srcset="images/header-08-sm.webp 960w, images/header-08.webp 1920w" sizes="100vw" width="1920" height="1080" alt="">
+                    <img src="images/header-09.webp" srcset="images/header-09-sm.webp 960w, images/header-09.webp 1920w" sizes="100vw" width="1920" height="1080" alt="">
+                    <img src="images/header-10.webp" srcset="images/header-10-sm.webp 960w, images/header-10.webp 1920w" sizes="100vw" width="1920" height="1080" alt="">
+                    <img src="images/header-11.webp" srcset="images/header-11-sm.webp 960w, images/header-11.webp 1920w" sizes="100vw" width="1920" height="1080" alt="">
+                    <img src="images/header-12.webp" srcset="images/header-12-sm.webp 960w, images/header-12.webp 1920w" sizes="100vw" width="1920" height="1080" alt="">
+                </div>
+            </div>
         </section>
-        <!-- ↑ Hero sekcijas beigas -->
 
-        <!-- PORTFOLIO SEKCIJA - Darbu galerija -->
-        <section class="portfolio">
-        <!-- ↑ Jauna sekcija ar class="portfolio" -->
-
-            <h2>Izvēlētie darbi</h2>
-            <!-- ↑ Sekcijas virsraksts -->
-
-            <div class="gallery">
-            <!-- ↑ <div> - Container (kastīte grupēšanai) -->
-            <!-- class="gallery" - CSS izmantos, lai izveidotu grid layout -->
-
-                <!-- PROJEKTS 1 -->
-                <div class="project-card card1">
-                <!-- ↑ Pirmā projekta kartīte -->
-                <!-- 2 klases: "project-card" (vispārīgi stili) + "card1" (specifiskā krāsa) -->
-
-                    <div class="img-placeholder"></div>
-                    <!-- ↑ Tukša kastīte attēlam -->
-                    <!-- CSS piešķirs pelēko fonu -->
-                    <!-- Vēlāk var pievienot: <img src="images/project1.jpg"> -->
-
-                    <h3>Projekta nosaukums</h3>
-                    <!-- ↑ <h3> - Trešā līmeņa virsraksts (vēl mazāks) -->
-                    <!-- Students šeit raksta sava darba nosaukumu -->
-
-                    <p>Interaktīva instalācija, 2025</p>
-                    <!-- ↑ Īss darba apraksts -->
-
+        <!-- ============ ABOUT ============ -->
+        <section class="about" id="about">
+            <div class="container">
+                <h2 class="section-label">ABOUT</h2>
+                <div class="about-grid">
+                    <p class="about-hey">Hey!</p>
+                    <p class="about-text">I’m a graphic designer/ artist <br class="br-desktop">based in Latvia.</p>
                 </div>
-                <!-- ↑ Projekta 1 beigas -->
+            </div>
+        </section>
 
-                <!-- PROJEKTS 2 -->
-                <div class="project-card card2">
-                <!-- ↑ Otrā projekta kartīte -->
-                <!-- card2 = cita fona krāsa CSS -->
+        <!-- ============ WORKS ============ -->
+        <section class="works container" id="works">
+            <h2 class="section-label">WORKS</h2>
 
-                    <div class="img-placeholder"></div>
-                    <!-- ↑ Vieta otrajam attēlam -->
+            <div class="tabs" role="tablist">
+                <button class="tab is-active" role="tab" aria-selected="true" data-tab="personal">PERSONAL PROJECTS</button>
+                <button class="tab" role="tab" aria-selected="false" data-tab="client">CLIENT WORK</button>
+            </div>
 
-                    <h3>Projekta nosaukums</h3>
-                    <!-- ↑ Otra projekta nosaukums -->
+            <!--
+                HOW TO ADD A PROJECT:
+                Copy one <article class="card"> … </article> block and change:
+                  - data-title, data-year, data-description (shown in the pop-up)
+                  - data-model (optional: path to a .glb file → shows the 3D viewer in the pop-up)
+                  - class "card--dark" (black background) or "card--light" (white background)
+                  - the <img> tags inside .slides (add more <img> lines for more slides)
+                  - the caption text at the bottom
+            -->
 
-                    <p>Ģeneratīvā māksla, 2025</p>
-                    <!-- ↑ Otra projekta apraksts -->
+            <!-- PERSONAL PROJECTS -->
+            <div class="gallery is-active" data-panel="personal">
 
-                </div>
-                <!-- ↑ Projekta 2 beigas -->
+                <article class="card card--dark"
+                    data-title="Tool"
+                    data-year="2025"
+                    data-model="models/tool.glb"
+                    data-description="A hybrid between the human body and an object of agricultural technology—berry-picking harvesters. This bodily-technical fusion creates the impression that the hand itself has become an instrument.&#10;Material – Plaster. Dimensions – 24 × 16,5 × 16 cm. 3D model created with RealityScan, edited with Blender.">
+                    <div class="card-media">
+                        <div class="slides">
+                            <img src="images/tool-1.png" alt="Plaster hand sculpture">
+                            <!-- <img src="images/tool-2.jpg" alt=""> -->
+                        </div>
+                    </div>
+                    <div class="card-caption"><span>Tool</span><span>2025</span></div>
+                </article>
 
-                <!-- PROJEKTS 3 -->
-                <div class="project-card card3">
-                <!-- ↑ Trešā projekta kartīte -->
+                <article class="card card--light"
+                    data-title="Latvian sayings"
+                    data-year="2024"
+                    data-description="">
+                    <div class="card-media">
+                        <div class="slides">
+                            <img src="images/latvian-sayings-1.png" alt="Line drawing of a herring in a fur coat">
+                        </div>
+                    </div>
+                    <div class="card-caption"><span>Latvian sayings</span><span>2024</span></div>
+                </article>
 
-                    <div class="img-placeholder"></div>
-                    <!-- ↑ Vieta trešajam attēlam -->
-
-                    <h3>Projekta nosaukums</h3>
-                    <!-- ↑ Trešā projekta nosaukums -->
-
-                    <p>Web eksperiments, 2025</p>
-                    <!-- ↑ Trešā projekta apraksts -->
-
-                </div>
-                <!-- ↑ Projekta 3 beigas -->
+                <article class="card card--dark"
+                    data-title="Precipitation amount deviation"
+                    data-year="2025"
+                    data-description="">
+                    <div class="card-media">
+                        <div class="slides">
+                            <img src="images/precipitation-1.png" alt="Turquoise data sculpture on black">
+                        </div>
+                    </div>
+                    <div class="card-caption"><span>Precipitation amount deviation</span><span>2025</span></div>
+                </article>
 
             </div>
-            <!-- ↑ Gallery beidzas -->
 
+            <!-- CLIENT WORK -->
+            <div class="gallery" data-panel="client" hidden>
+
+                <article class="card card--light"
+                    data-title="Visual identity – Prokuratūrai 35"
+                    data-year="2025"
+                    data-description="">
+                    <div class="card-media">
+                        <div class="slides">
+                            <img src="images/prokuraturai-35-1.png" alt="Visual identity for Prokuratūrai 35">
+                        </div>
+                    </div>
+                    <div class="card-caption"><span>Visual identity – Prokuratūrai 35</span><span>2025</span></div>
+                </article>
+
+                <article class="card card--light"
+                    data-title="Oversee social media"
+                    data-year="2021"
+                    data-description="">
+                    <div class="card-media">
+                        <div class="slides">
+                            <img src="images/oversee-1.png" alt="Social media collage for Oversee">
+                        </div>
+                    </div>
+                    <div class="card-caption"><span>Oversee social media</span><span>2021</span></div>
+                </article>
+
+            </div>
         </section>
-        <!-- ↑ Portfolio sekcijas beigas -->
-
     </main>
-    <!-- ↑ Main satura beigas -->
 
-    <!-- ========================================
-         FOOTER - Apakšējā daļa ar info
-         ======================================== -->
-    <footer>
-    <!-- ↑ <footer> - semantisks tags lapas kājenei -->
-
-        <div class="footer-content">
-        <!-- ↑ Container kas centēs saturu (CSS) -->
-
-            <p>© 2026 Vārds Uzvārds</p>
-            <!-- ↑ Copyright simbols © un vārds -->
-
-            <div class="social-links">
-            <!-- ↑ Container sociālajām saitēm -->
-
-                <a href="#">Instagram</a>
-                <!-- ↑ Saite uz Instagram -->
-                <!-- href="#" - pagaidu, vēlāk aizstāj ar īsto URL -->
-
-                <a href="#">Youtube</a>
-                <!-- ↑ Saite uz Youtube -->
-
-                <a href="#">Facebook</a>
-                <!-- ↑ Saite uz Facebook -->
-
-            </div>
-            <!-- ↑ Social links beidzas -->
-
-        </div>
-        <!-- ↑ Footer content beidzas -->
-
+    <!-- ============ FOOTER ============ -->
+    <footer class="site-footer">
+        <label class="theme-toggle">
+            <span>Black</span>
+            <input type="checkbox" id="theme-switch">
+            <span class="switch" aria-hidden="true"></span>
+        </label>
+        <p class="copyright">© 2026 Lāsma Fedotova</p>
     </footer>
-    <!-- ↑ Footer beidzas -->
+
+    <!-- ============ PROJECT POP-UP ============ -->
+    <dialog class="project-modal" id="project-modal" aria-labelledby="modal-title">
+        <div class="modal-inner container">
+            <div class="modal-top">
+                <button class="round-btn modal-close" aria-label="Back">
+                    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <h2 id="modal-title" class="modal-title"></h2>
+            </div>
+            <div class="modal-media"></div>
+            <p class="modal-description"></p>
+        </div>
+    </dialog>
 
 </body>
-<!-- ↑ Body beidzas -->
-
 </html>
-<!-- ↑ Visa HTML dokumenta beigas -->
-
-
-<!--
-==============================================
-KOPSAVILKUMS - LAPAS STRUKTŪRA:
-==============================================
-
-1. HEADER (augšā)
-   └── Logo (Vārds Uzvārds) + Menu saites
-
-2. MAIN (vidus)
-   ├── HERO sekcija
-   │   └── Liels virsraksts + apraksts
-   └── PORTFOLIO sekcija
-       └── 3 projektu kartītes
-           ├── Attēla vieta
-           ├── Nosaukums
-           └── Apraksts
-
-3. FOOTER (apakšā)
-   └── Copyright + Sociālās saites
-
-==============================================
-KO MAINĪT:
-==============================================
-
-✏️  Rinda 14: Tavs vārds
-✏️  Rinda 27: Hero virsraksts
-✏️  Rinda 28: Hero apraksts
-✏️  Rinda 40-42: Projekts 1 info
-✏️  Rinda 49-51: Projekts 2 info
-✏️  Rinda 58-60: Projekts 3 info
-✏️  Rinda 71: Copyright vārds
-✏️  Rinda 75-79: Sociālo saišu URL
-==============================================
--->
