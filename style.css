@@ -28,7 +28,7 @@
 :root {
     --blue: #2032ff;
     --bg: #ffffff;
-    --text: #2032ff;
+    --text: var(--blue);
     --card-dark: #000000;
     --card-light: #ffffff;
     --pad: clamp(1.25rem, 4.5vw, 5.5rem);   /* side padding */
@@ -36,10 +36,11 @@
     --header-h: 5.5rem;   /* updated automatically by script.js */
 }
 
-/* "Black" mode (toggle in the footer) */
+/* "Black" mode (switch in the footer): every blue becomes black —
+   text, icons, the About band and the footer. The page stays white. */
 body.dark {
-    --bg: #000000;
-    --card-light: #000000;
+    --blue: #000000;
+    --text: #000000;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -51,7 +52,7 @@ body {
     font-weight: 700;
     color: var(--text);
     background: var(--bg);
-    transition: background 0.3s;
+    transition: background 0.3s, color 0.3s;
 }
 
 a { color: inherit; text-decoration: none; }
@@ -85,7 +86,6 @@ img { display: block; max-width: 100%; }
     backdrop-filter: blur(16px);
 }
 
-body.dark .site-header { background: rgba(0, 0, 0, 0.6); }
 
 /* Menu links (#about, #works) stop below the header instead of under it */
 section[id] { scroll-margin-top: var(--header-h); }
@@ -149,8 +149,6 @@ section[id] { scroll-margin-top: var(--header-h); }
     .hero-sticky { position: static; }
 }
 
-/* Black mode: the hero stays white for now. If you make a dark version
-   of the illustration (e.g. images/hero-dark.png), you can swap it in here. */
 
 /* ============================================
    ABOUT (blue band)
@@ -160,6 +158,7 @@ section[id] { scroll-margin-top: var(--header-h); }
     background: var(--blue);
     color: #ffffff;
     padding-block: clamp(2.5rem, 5vw, 6rem) clamp(4rem, 8vw, 10rem);
+    transition: background 0.3s;
 }
 
 .about-grid {
@@ -233,8 +232,6 @@ section[id] { scroll-margin-top: var(--header-h); }
 .card--dark  .card-media { background: var(--card-dark); }
 .card--light .card-media { background: var(--card-light); }
 
-/* Black mode: turn black line drawings on white into white lines on black */
-body.dark .card--light .slides img { filter: invert(1); }
 
 .slides { position: absolute; inset: 0; }
 
@@ -317,6 +314,7 @@ body.dark .card--light .slides img { filter: invert(1); }
 .site-footer {
     background: var(--blue);
     color: #ffffff;
+    transition: background 0.3s;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -387,7 +385,6 @@ body.dark .card--light .slides img { filter: invert(1); }
 }
 
 .modal-close { background: #f2f2f2; color: #111; }
-body.dark .modal-close { background: #2b2b2b; color: #fff; }
 
 .modal-title { font-size: clamp(1.1rem, 1.67vw, 2rem); }
 
