@@ -33,6 +33,7 @@
     --card-light: #ffffff;
     --pad: clamp(1.25rem, 4.5vw, 5.5rem);   /* side padding */
     --radius: 12px;
+    --header-h: 5.5rem;   /* updated automatically by script.js */
 }
 
 /* "Black" mode (toggle in the footer) */
@@ -68,13 +69,26 @@ img { display: block; max-width: 100%; }
    HEADER
    ============================================ */
 
+/* Stays at the top while scrolling, with a frosted-glass background.
+   Change the 0.6 (see-through amount) and 16px (blur strength) to taste. */
 .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-block: 2.5rem;
+    padding-block: 1.75rem;
     font-size: clamp(0.8rem, 1.05vw, 1.25rem);  /* 20px in Figma */
+    background: rgba(255, 255, 255, 0.6);
+    -webkit-backdrop-filter: blur(16px);         /* Safari */
+    backdrop-filter: blur(16px);
 }
+
+body.dark .site-header { background: rgba(0, 0, 0, 0.6); }
+
+/* Menu links (#about, #works) stop below the header instead of under it */
+section[id] { scroll-margin-top: var(--header-h); }
 
 .logo { letter-spacing: 0.01em; }
 
@@ -94,18 +108,18 @@ img { display: block; max-width: 100%; }
    HERO
    ============================================ */
 
-/* Frame size: full width, 16:9, but never taller than the screen */
+/* Frame size: full width, 16:9, but never taller than the space below the header */
 .hero {
-    --frame-h: min(56.25vw, 100svh);
+    --frame-h: min(56.25vw, 100svh - var(--header-h));
     --scroll-length: 180svh;          /* bigger = slower animation */
     height: calc(var(--frame-h) + var(--scroll-length));
     background: #ffffff;
 }
 
-/* Stays in the middle of the screen while you scroll through .hero */
+/* Stays pinned just below the header while you scroll through .hero */
 .hero-sticky {
     position: sticky;
-    top: clamp(0px, calc((100svh - var(--frame-h)) / 2), 4.5rem);
+    top: calc(var(--header-h) + clamp(0px, (100svh - var(--header-h) - var(--frame-h)) / 2, 2rem));
     height: var(--frame-h);
     display: flex;
     justify-content: center;

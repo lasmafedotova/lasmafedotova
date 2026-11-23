@@ -1,4 +1,13 @@
 // ============================================
+// Header height → CSS variable --header-h (used to place things below the sticky header)
+// ============================================
+const siteHeader = document.querySelector('.site-header');
+const setHeaderHeight = () =>
+    document.documentElement.style.setProperty('--header-h', `${siteHeader.offsetHeight}px`);
+setHeaderHeight();
+new ResizeObserver(setHeaderHeight).observe(siteHeader);
+
+// ============================================
 // 0. HERO SCROLL ANIMATION — Header 1 → Header 12
 //    The further you scroll through the hero, the later the frame.
 // ============================================
