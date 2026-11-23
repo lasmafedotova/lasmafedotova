@@ -11,8 +11,8 @@
 }
 
 @font-face {
-    font-family: 'LasmaFinal';
-    src: url('fonts/LasmaFinal-Regular.woff') format('woff');
+    font-family: 'Lasmaportfolio';
+    src: url('fonts/Lasmaportfolio-Regular.woff') format('woff');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -174,8 +174,8 @@ section[id] { scroll-margin-top: var(--header-h); }
 }
 
 .about-text {
-    /* LasmaFinal has no "/" — the browser takes it from Bodoni Moda */
-    font-family: 'LasmaFinal', 'Bodoni Moda', serif;
+    /* Lasmaportfolio has no "/" — the browser takes it from Bodoni Moda */
+    font-family: 'Lasmaportfolio', 'Bodoni Moda', serif;
     font-weight: 400;
     font-size: clamp(1.6rem, 3.33vw, 4rem);   /* 64px in Figma */
     line-height: 1.35;
@@ -197,6 +197,8 @@ section[id] { scroll-margin-top: var(--header-h); }
 }
 
 .tab {
+    font-family: 'Lasmaportfolio', 'Bodoni Moda', serif;
+    font-weight: 400;
     font-size: clamp(0.85rem, 1.25vw, 1.5rem);   /* 24px in Figma */
     padding-bottom: 0.2em;
     border-bottom: 2px solid transparent;
