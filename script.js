@@ -104,6 +104,20 @@ document.querySelectorAll('.card').forEach((card) => {
 // 3. PROJECT POP-UP — opens when a card is clicked
 //    If the card has data-model="models/xxx.glb", the pop-up shows the 3D viewer.
 // ============================================
+// 3D model lighting. Tweak these numbers to taste:
+//   environment-image: 'legacy' = light from the front, more shading; 'neutral' = even, flatter light
+//   exposure:          brightness (1 = normal, lower = darker, more contrast on white objects)
+//   tone-mapping:      'agx' = more filmic contrast; 'neutral' = true-to-color but flatter
+//   shadow-intensity:  0 = no shadow under the model, up to 2 = strong
+//   shadow-softness:   0 = sharp shadow, 1 = very soft
+const VIEWER_LOOK = {
+    'environment-image': 'legacy',
+    'exposure': '0.85',
+    'tone-mapping': 'agx',
+    'shadow-intensity': '1.5',
+    'shadow-softness': '0.5',
+};
+
 const modal = document.getElementById('project-modal');
 const modalTitle = modal.querySelector('.modal-title');
 const modalMedia = modal.querySelector('.modal-media');
@@ -131,7 +145,8 @@ document.querySelectorAll('.card').forEach((card) => {
             viewer.setAttribute('camera-controls', '');
             viewer.setAttribute('touch-action', 'pan-y');
             viewer.setAttribute('auto-rotate', '');
-            viewer.setAttribute('shadow-intensity', '1');
+            // Look of the 3D model — see VIEWER_LOOK below to adjust
+            Object.entries(VIEWER_LOOK).forEach(([k, v]) => viewer.setAttribute(k, v));
             viewer.addEventListener('load', () => { modalMedia.style.backgroundImage = 'none'; });
             modalMedia.appendChild(viewer);
         } else if (activeImg) {
