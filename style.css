@@ -143,6 +143,8 @@ section[id] { scroll-margin-top: var(--header-h); }
 
 .hero-frames img.is-active { visibility: visible; }
 
+/* Phones / portrait screens: show the upright 3:4 frames (header-XX-mobile.webp),
+   centered in the space below the header. */
 @media (max-aspect-ratio: 1 / 1) {
     .hero {
         --frame-h: min(133.33vw, 100svh - var(--header-h));
@@ -152,10 +154,7 @@ section[id] { scroll-margin-top: var(--header-h); }
         top: calc(var(--header-h) + (100svh - var(--header-h) - var(--frame-h)) / 2);
     }
     .hero-frames { aspect-ratio: 3 / 4; }
-    .hero-frames img {
-        object-fit: cover;
-        object-position: center bottom;
-    }
+    .hero-frames img { object-position: center bottom; }
 }
 
 /* Visitors who turned off animations see only the first frame */
