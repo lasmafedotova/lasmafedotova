@@ -18,6 +18,15 @@
     font-display: swap;
 }
 
+/* Texts set in Lasmaportfolio (the rest of the site uses Bodoni Moda):
+   menu links, tabs, project titles, the "Black" label and the About sentence */
+.nav > a,
+.card-caption span:first-child,
+.theme-label {
+    font-family: 'Lasmaportfolio', 'Bodoni Moda', serif;
+    font-weight: 400;
+}
+
 /* ============================================
    COLORS & BASICS
    Change the colors here — they're used everywhere.
@@ -318,6 +327,7 @@ section[id] { scroll-margin-top: var(--header-h); }
 .card-caption {
     display: flex;
     justify-content: space-between;
+    align-items: baseline;
     gap: 1rem;
     margin-top: 0.9rem;
     font-size: clamp(0.75rem, 1.05vw, 1.25rem);   /* 20px in Figma */
