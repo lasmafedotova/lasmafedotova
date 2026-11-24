@@ -143,6 +143,26 @@ section[id] { scroll-margin-top: var(--header-h); }
 
 .hero-frames img.is-active { visibility: visible; }
 
+/* Phones / portrait screens: a wide 16:9 frame would be tiny and leave a big
+   white gap below it, so show a taller 3:4 crop around the figure instead,
+   centered in the space below the header.
+   Change 3 / 4 (and 133.33vw = 100vw × 4/3) for a different crop,
+   or delete this block to show the full frames. */
+@media (max-aspect-ratio: 1 / 1) {
+    .hero {
+        --frame-h: min(133.33vw, 100svh - var(--header-h));
+        --scroll-length: 140svh;
+    }
+    .hero-sticky {
+        top: calc(var(--header-h) + (100svh - var(--header-h) - var(--frame-h)) / 2);
+    }
+    .hero-frames { aspect-ratio: 3 / 4; }
+    .hero-frames img {
+        object-fit: cover;
+        object-position: center bottom;
+    }
+}
+
 /* Visitors who turned off animations see only the first frame */
 @media (prefers-reduced-motion: reduce) {
     .hero { height: auto; }
