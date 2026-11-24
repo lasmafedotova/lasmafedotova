@@ -116,6 +116,7 @@ document.querySelectorAll('.card').forEach((card) => {
         const { title, year, model, description } = card.dataset;
         const activeImg = card.querySelector('.slides img.is-active') || card.querySelector('.slides img');
 
+        modal.classList.toggle('modal--dark', card.dataset.theme === 'dark');
         modalTitle.textContent = year ? `${title} (${year})` : title;
         modalText.textContent = description || '';
         modalMedia.innerHTML = '';
