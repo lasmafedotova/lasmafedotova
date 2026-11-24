@@ -116,6 +116,10 @@ const VIEWER_LOOK = {
     'tone-mapping': 'agx',
     'shadow-intensity': '1.5',
     'shadow-softness': '0.5',
+    // camera-orbit: 'horizontal angle, vertical angle, distance'.
+    // Distance 100% fits the model exactly; bigger = smaller model with more space around it.
+    'camera-orbit': '0deg 75deg 150%',
+    'camera-target': 'auto auto auto',   // aim at the center of the model
 };
 
 const modal = document.getElementById('project-modal');
@@ -128,6 +132,7 @@ document.querySelectorAll('.card').forEach((card) => {
         if (card.dataset.swiped) { delete card.dataset.swiped; return; }  // a swipe isn't a click
 
         const { title, year, model, description } = card.dataset;
+        let pendingViewer = null;
         const activeImg = card.querySelector('.slides img.is-active') || card.querySelector('.slides img');
 
         modal.classList.toggle('modal--dark', card.dataset.theme === 'dark');
@@ -145,16 +150,25 @@ document.querySelectorAll('.card').forEach((card) => {
             viewer.setAttribute('camera-controls', '');
             viewer.setAttribute('touch-action', 'pan-y');
             viewer.setAttribute('auto-rotate', '');
-            // Look of the 3D model — see VIEWER_LOOK below to adjust
+            // Look of the 3D model — adjust in VIEWER_LOOK above
             Object.entries(VIEWER_LOOK).forEach(([k, v]) => viewer.setAttribute(k, v));
-            viewer.addEventListener('load', () => { modalMedia.style.backgroundImage = 'none'; });
-            modalMedia.appendChild(viewer);
+            viewer.addEventListener('load', () => {
+                modalMedia.style.backgroundImage = 'none';
+                viewer.updateFraming?.();   // re-center now that the model and pop-up size are known
+            });
+            pendingViewer = viewer;
         } else if (activeImg) {
             modalMedia.appendChild(activeImg.cloneNode());
             modalMedia.firstChild.classList.remove('is-active');
         }
 
         modal.showModal();
+
+        // Add the 3D viewer only after the pop-up is open, so it knows its real size
+        if (pendingViewer) {
+            modalMedia.appendChild(pendingViewer);
+            pendingViewer = null;
+        }
     });
 });
 
